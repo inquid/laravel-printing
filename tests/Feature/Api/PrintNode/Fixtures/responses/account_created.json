@@ -1,0 +1,25 @@
+[
+    {
+        "id": 12347,
+        "firstname": "-",
+        "lastname": "-",
+        "email": "newcustomer@example.com",
+        "creatorEmail": "integrator@example.com",
+        "creatorRef": "customer_789",
+        "createTimestamp": "2024-03-01 09:00:00",
+        "ApiKeys": [
+            {
+                "name": "production",
+                "value": "api_key_new123"
+            }
+        ],
+        "Tags": {
+            "plan": "trial",
+            "source": "api"
+        },
+        "state": "active",
+        "credits": 100,
+        "numComputers": 0,
+        "totalPrints": 0
+    }
+]

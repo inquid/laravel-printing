@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+use Rawilk\Printing\Api\PrintNode\Service\AccountService;
 use Rawilk\Printing\Api\PrintNode\Service\ServiceFactory;
 use Rawilk\Printing\Api\PrintNode\Service\WhoamiService;
 
@@ -12,7 +13,8 @@ beforeEach(function () {
 });
 
 it('exposes properties for services', function () {
-    expect($this->serviceFactory->whoami)->toBeInstanceOf(WhoamiService::class);
+    expect($this->serviceFactory->whoami)->toBeInstanceOf(WhoamiService::class)
+        ->and($this->serviceFactory->accounts)->toBeInstanceOf(AccountService::class);
 });
 
 test('multiple calls return the same instance', function () {
