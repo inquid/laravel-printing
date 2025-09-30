@@ -9,6 +9,7 @@ use Rawilk\Printing\Api\PrintNode\Service\ServiceFactory;
 /**
  * Client used to send requests to PrintNode's API.
  *
+ * @property-read \Rawilk\Printing\Api\PrintNode\Service\AccountService $accounts
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\ComputerService $computers
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrinterService $printers
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrintJobService $printJobs

@@ -51,6 +51,16 @@ For example, to retrieve all printers for an account, you would use the `printer
 $client->printers->all();
 ```
 
+### Available Services
+
+The following services are available on the PrintNode client:
+
+- **accounts**: Manage integrator and child accounts
+- **computers**: Retrieve computer information
+- **printers**: Manage and retrieve printer information  
+- **printJobs**: Create and manage print jobs
+- **whoami**: Get account information
+
 More information about each service can be found on that service's doc page.
 
 ## Resources

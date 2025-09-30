@@ -1,0 +1,33 @@
+{
+    "id": 12345,
+    "firstname": "-",
+    "lastname": "-",
+    "email": "customer@example.com",
+    "canCreateSubAccounts": false,
+    "creatorEmail": "integrator@example.com",
+    "creatorRef": "customer-ref-001",
+    "childAccounts": [],
+    "credits": 1000,
+    "numComputers": 1,
+    "totalPrints": 50,
+    "versions": [],
+    "connected": [],
+    "Tags": {
+        "customerType": "premium",
+        "region": "us-west"
+    },
+    "ApiKeys": [
+        {
+            "name": "development",
+            "key": "dev-api-key-123"
+        },
+        {
+            "name": "production",
+            "key": "prod-api-key-456"
+        }
+    ],
+    "state": "active",
+    "permissions": [
+        "Restricted"
+    ]
+}

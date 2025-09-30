@@ -1,0 +1,42 @@
+{
+    "id": 433,
+    "firstname": "Peter",
+    "lastname": "Tuthill",
+    "email": "peter@omlet.co.uk",
+    "canCreateSubAccounts": true,
+    "creatorEmail": null,
+    "creatorRef": null,
+    "childAccounts": [
+        {
+            "id": 12345,
+            "email": "customer1@example.com",
+            "creatorRef": "customer-ref-001",
+            "state": "active"
+        },
+        {
+            "id": 12346,
+            "email": "customer2@example.com",
+            "creatorRef": "customer-ref-002",
+            "state": "active"
+        }
+    ],
+    "credits": 10134,
+    "numComputers": 3,
+    "totalPrints": 110,
+    "versions": [],
+    "connected": [],
+    "Tags": {
+        "accountType": "integrator",
+        "tier": "enterprise"
+    },
+    "ApiKeys": [
+        {
+            "name": "main",
+            "key": "integrator-api-key-main"
+        }
+    ],
+    "state": "active",
+    "permissions": [
+        "Unrestricted"
+    ]
+}

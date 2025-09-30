@@ -13,6 +13,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeClientInterface;
  *
  * @internal
  *
+ * @property-read \Rawilk\Printing\Api\PrintNode\Service\AccountService $accounts
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\ComputerService $computers
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrinterService $printers
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrintJobService $printJobs
@@ -23,6 +24,7 @@ class ServiceFactory
     protected array $services = [];
 
     private static array $classMap = [
+        'accounts' => AccountService::class,
         'computers' => ComputerService::class,
         'printers' => PrinterService::class,
         'printJobs' => PrintJobService::class,
