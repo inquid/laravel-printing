@@ -34,7 +34,7 @@ class PrintNodeApiRequestor
         $this->apiBase = $apiBase;
     }
 
-    public function request(string $method, string $url, array $params = [], ?array $headers = []): array
+    public function request(string $method, string $url, array|string $params = [], ?array $headers = []): array
     {
         [$absoluteUrl, $headers, $params, $apiKey] = $this->prepareRequest($method, $url, $params, $headers);
 
@@ -48,10 +48,21 @@ class PrintNodeApiRequestor
 
         $client = $this->httpClient()->withHeaders($headers);
 
+        // Send JSON for write operations when params are arrays
+        if (in_array(strtolower($method), ['post', 'put', 'patch'], true) && is_array($params)) {
+            $client = $client->asJson();
+        }
+
         $response = match (strtolower($method)) {
-            'get' => $client->get($absoluteUrl, $params),
+            'get' => $client->get($absoluteUrl, is_array($params) ? $params : []),
             'post' => $client->post($absoluteUrl, $params),
-            'delete' => $client->delete($absoluteUrl, $params),
+            'delete' => $client->delete($absoluteUrl, is_array($params) ? $params : []),
+            'put' => is_string($params)
+                ? $client->withBody($params, 'application/json')->send('PUT', $absoluteUrl)
+                : $client->put($absoluteUrl, $params),
+            'patch' => is_string($params)
+                ? $client->withBody($params, 'application/json')->send('PATCH', $absoluteUrl)
+                : $client->patch($absoluteUrl, $params),
         };
 
         $body = $this->interpretResponse($response);
@@ -158,6 +169,11 @@ class PrintNodeApiRequestor
                 $response->json('message', ''),
                 $response->status(),
             );
+        }
+
+        // Some endpoints return no content (e.g., 204) - normalize to empty array
+        if ($response->status() === 204) {
+            return [];
         }
 
         return $response->json();
