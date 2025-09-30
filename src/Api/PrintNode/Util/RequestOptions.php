@@ -68,6 +68,17 @@ class RequestOptions
                 unset($options['idempotency_key']);
             }
 
+            // Support Integrator Child Accounts
+            // When the caller specifies a `child_account` value, we need to
+            // include the `X-Child-Account` header so the request is scoped to
+            // the given child account (see PrintNode Integrator Accounts docs).
+            if (array_key_exists('child_account', $options)) {
+                $headers['X-Child-Account'] = (string) $options['child_account'];
+
+                // Ensure the option does not bleed through any further
+                unset($options['child_account']);
+            }
+
             if (array_key_exists('api_base', $options)) {
                 $base = $options['api_base'];
                 unset($options['api_base']);
