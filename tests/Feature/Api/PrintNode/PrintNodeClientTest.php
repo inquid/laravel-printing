@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+use Rawilk\Printing\Api\PrintNode\Service\AccountService;
 use Rawilk\Printing\Api\PrintNode\Service\WhoamiService;
 
 beforeEach(function () {
@@ -10,5 +11,6 @@ beforeEach(function () {
 });
 
 it('exposes properties for services', function () {
-    expect($this->client->whoami)->toBeInstanceOf(WhoamiService::class);
+    expect($this->client->whoami)->toBeInstanceOf(WhoamiService::class)
+        ->and($this->client->accounts)->toBeInstanceOf(AccountService::class);
 });

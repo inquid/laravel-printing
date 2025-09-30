@@ -1,0 +1,29 @@
+[
+    {
+        "id": 12345,
+        "firstname": "-",
+        "lastname": "-",
+        "email": "customer1@example.com",
+        "creatorEmail": "integrator@example.com",
+        "creatorRef": "customer_123",
+        "createTimestamp": "2024-01-15 10:30:00",
+        "ApiKeys": [
+            {
+                "name": "production",
+                "value": "api_key_abc123"
+            },
+            {
+                "name": "development",
+                "value": "api_key_dev456"
+            }
+        ],
+        "Tags": {
+            "plan": "premium",
+            "region": "us-east"
+        },
+        "state": "suspended",
+        "credits": 1000,
+        "numComputers": 2,
+        "totalPrints": 150
+    }
+]

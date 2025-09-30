@@ -1,0 +1,52 @@
+[
+    {
+        "id": 12345,
+        "firstname": "-",
+        "lastname": "-",
+        "email": "customer1@example.com",
+        "creatorEmail": "integrator@example.com",
+        "creatorRef": "customer_123",
+        "createTimestamp": "2024-01-15 10:30:00",
+        "ApiKeys": [
+            {
+                "name": "production",
+                "value": "api_key_abc123"
+            },
+            {
+                "name": "development",
+                "value": "api_key_dev456"
+            }
+        ],
+        "Tags": {
+            "plan": "premium",
+            "region": "us-east"
+        },
+        "state": "active",
+        "credits": 1000,
+        "numComputers": 2,
+        "totalPrints": 150
+    },
+    {
+        "id": 12346,
+        "firstname": "-",
+        "lastname": "-",
+        "email": "customer2@example.com",
+        "creatorEmail": "integrator@example.com",
+        "creatorRef": "customer_456",
+        "createTimestamp": "2024-01-20 14:45:00",
+        "ApiKeys": [
+            {
+                "name": "production",
+                "value": "api_key_xyz789"
+            }
+        ],
+        "Tags": {
+            "plan": "basic",
+            "region": "eu-west"
+        },
+        "state": "active",
+        "credits": 500,
+        "numComputers": 1,
+        "totalPrints": 75
+    }
+]
