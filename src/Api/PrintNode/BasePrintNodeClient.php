@@ -33,6 +33,8 @@ class BasePrintNodeClient implements PrintNodeClientInterface
 
     private RequestOptions $defaultOpts;
 
+    private array $defaultHeaders = [];
+
     public function __construct(#[SensitiveParameter] string|array|null $config = [])
     {
         if (is_string($config)) {
@@ -68,6 +70,43 @@ class BasePrintNodeClient implements PrintNodeClientInterface
         return $this;
     }
 
+    /**
+     * Set a default header to be included in all requests.
+     *
+     * @param string $name
+     * @param string $value
+     * @return static
+     */
+    public function setDefaultHeader(string $name, string $value): static
+    {
+        $this->defaultHeaders[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Remove a default header.
+     *
+     * @param string $name
+     * @return static
+     */
+    public function removeDefaultHeader(string $name): static
+    {
+        unset($this->defaultHeaders[$name]);
+
+        return $this;
+    }
+
+    /**
+     * Get all default headers.
+     *
+     * @return array
+     */
+    public function getDefaultHeaders(): array
+    {
+        return $this->defaultHeaders;
+    }
+
     public function request(
         string $method,
         string $path,
@@ -78,6 +117,11 @@ class BasePrintNodeClient implements PrintNodeClientInterface
         $defaultRequestOpts = $this->defaultOpts;
 
         $opts = $defaultRequestOpts->merge($opts, true);
+
+        // Merge default headers with request headers
+        if (! empty($this->defaultHeaders)) {
+            $opts->headers = array_merge($this->defaultHeaders, $opts->headers ?? []);
+        }
 
         $baseUrl = $opts->apiBase ?: $this->getApiBase();
 

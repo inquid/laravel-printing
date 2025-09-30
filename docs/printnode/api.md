@@ -53,6 +53,16 @@ $client->printers->all();
 
 More information about each service can be found on that service's doc page.
 
+### Available Services
+
+The PrintNode client provides the following services:
+
+- `accounts` - Manage child accounts (Integrator accounts only)
+- `computers` - Manage computers
+- `printers` - Manage printers
+- `printJobs` - Manage print jobs
+- `whoami` - Get account information
+
 ## Resources
 
 A resource class represents some kind of resource retrieved from the PrintNode API, such as a printer or computer. When the `Printing` facade is used, the PrintNode entity objects will contain a reference to their relevant api resource objects as well.
