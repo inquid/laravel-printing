@@ -73,6 +73,22 @@ class RequestOptions
                 unset($options['api_base']);
             }
 
+            // Integrator/Child Account impersonation headers
+            if (array_key_exists('child_account_by_id', $options)) {
+                $headers['X-Child-Account-By-Id'] = (string) $options['child_account_by_id'];
+                unset($options['child_account_by_id']);
+            }
+
+            if (array_key_exists('child_account_by_email', $options)) {
+                $headers['X-Child-Account-By-Email'] = (string) $options['child_account_by_email'];
+                unset($options['child_account_by_email']);
+            }
+
+            if (array_key_exists('child_account_by_creator_ref', $options)) {
+                $headers['X-Child-Account-By-CreatorRef'] = (string) $options['child_account_by_creator_ref'];
+                unset($options['child_account_by_creator_ref']);
+            }
+
             if ($strict && ! empty($options)) {
                 $message = 'Got unexpected keys in options array: ' . implode(', ', array_keys($options));
 

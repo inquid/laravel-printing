@@ -74,6 +74,58 @@ $client->printJobs->create([...], opts: [
 
 > {tip} The `$opts` argument is accepted in most method calls to the API when using the `Printing` facade as well.
 
+### Integrator / Child Accounts
+
+If your PrintNode account is an Integrator account, you can act on behalf of a child account by passing one of these keys in `$opts` (the client will translate them to the appropriate `X-Child-Account-*` headers):
+
+- `child_account_by_id` → sets `X-Child-Account-By-Id`
+- `child_account_by_email` → sets `X-Child-Account-By-Email`
+- `child_account_by_creator_ref` → sets `X-Child-Account-By-CreatorRef`
+
+Example: list printers for a child account identified by email:
+
+```php
+$client->printers->all(opts: [
+    'child_account_by_email' => 'customer@example.com',
+]);
+```
+
+### Managing Accounts (Integrator only)
+
+Use the `accounts` service for account creation and management:
+
+```php
+// Create a child account
+$created = $client->accounts->create([
+    'Account' => [
+        'firstname' => '-',
+        'lastname' => '-',
+        'email' => 'customer@example.com',
+        'password' => 'securepassword',
+        'creatorRef' => 'customer-123',
+    ],
+    'ApiKeys' => ['development', 'production'],
+    'Tags' => ['plan' => 'pro'],
+]);
+
+// Update a child account (targeted by email)
+$updated = $client->accounts->update([
+    'email' => 'new.email@example.com',
+], opts: [
+    'child_account_by_email' => 'customer@example.com',
+]);
+
+// Suspend a child account
+$client->accounts->setState('suspended', opts: [
+    'child_account_by_id' => 123,
+]);
+
+// Delete a child account
+$client->accounts->delete(opts: [
+    'child_account_by_creator_ref' => 'customer-123',
+]);
+```
+
 ## Pagination Params
 
 For requests that can be paginated, here are the supported array key values that can be sent through with a `$params` argument:

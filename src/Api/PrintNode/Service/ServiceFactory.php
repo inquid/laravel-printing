@@ -17,6 +17,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeClientInterface;
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrinterService $printers
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrintJobService $printJobs
  * @property-read \Rawilk\Printing\Api\PrintNode\Service\WhoamiService $whoami
+ * @property-read \Rawilk\Printing\Api\PrintNode\Service\AccountService $accounts
  */
 class ServiceFactory
 {
@@ -27,6 +28,7 @@ class ServiceFactory
         'printers' => PrinterService::class,
         'printJobs' => PrintJobService::class,
         'whoami' => WhoamiService::class,
+        'accounts' => AccountService::class,
     ];
 
     public function __construct(protected PrintNodeClientInterface $client)

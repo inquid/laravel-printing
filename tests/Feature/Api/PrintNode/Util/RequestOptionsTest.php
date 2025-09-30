@@ -100,6 +100,23 @@ it('can parse an array with an api base', function () {
         ->apiBase->toBe('https://example.com');
 });
 
+it('parses child account header options', function () {
+    $opts = RequestOptions::parse([
+        'child_account_by_id' => 123,
+        'child_account_by_email' => 'child@example.com',
+        'child_account_by_creator_ref' => 'child-ref',
+    ]);
+
+    expect($opts)
+        ->apiKey->toBeNull()
+        ->headers->toEqualCanonicalizing([
+            'X-Child-Account-By-Id' => '123',
+            'X-Child-Account-By-Email' => 'child@example.com',
+            'X-Child-Account-By-CreatorRef' => 'child-ref',
+        ])
+        ->apiBase->toBeNull();
+});
+
 it('can merge options', function () {
     $baseOpts = RequestOptions::parse([
         'api_key' => 'foo',
